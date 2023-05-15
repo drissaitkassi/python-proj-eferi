@@ -1,0 +1,1 @@
+Function 'my_function' called with positional arguments ('test decorator',) and keyword arguments {}.
