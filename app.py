@@ -79,37 +79,77 @@ while  (round_Number<3):
                     #round number will increment so i need to decrement it since the player
                     #entered an invalid input 
                     round_Number-=1
-        #player1=input("enter player 1 :")
                     
                     
-        #     case "S":
-        #         if player2 in sizeauxWinCombo:
-        #             print("player 1 wins ")
-        #         elif player2 in sizeauxLoseCombo:
-        #             print("player2 wins")
-        #         else:
-        #             print("Draw")
-        #     case "P":
-        #         if player2 in pierreWinCombo:
-        #             print("player 1 wins ")
-        #         elif player2 in pierreLoseCombo:
-        #             print("player2 wins")
-        #         else:
-        #             print("Draw")
-        #     case "L":
-        #         if player2 in lezardWinCombo:
-        #             print("player 1 wins ")
-        #         elif player2 in lezardLoseCombo:
-        #             print("player2 wins")
-        #         else:
-        #             print("Draw")
-        #     case "Sp":
-        #         if player2 in spockdWinCombo:
-        #             print("player 1 wins ")
-        #         elif player2 in spockdLoseCombo:
-        #             print("player2 wins")
-        #         else:
-        #             print("Draw")
+            case "S":
+
+                if  player2 in allowed_choices_P2:
+                    
+                    if player2 in sizeauxWinCombo:
+                        print("player 1 wins ")
+                    elif player2 in sizeauxLoseCombo:
+                        print("player2 wins")
+                    else:
+                        print("Draw")
+
+                else:
+                    print("player 2 entered an unvalid choice")
+                    #round number will increment so i need to decrement it since the player
+                    #entered an invalid input 
+                    round_Number-=1
+
+
+            case "P":
+
+                if  player2 in allowed_choices_P2:
+                    
+                    if player2 in pierreWinCombo:
+                        print("player 1 wins ")
+                    elif player2 in pierreLoseCombo:
+                        print("player2 wins")
+                    else:
+                        print("Draw")
+
+                else:
+                    print("player 2 entered an unvalid choice")
+                    #round number will increment so i need to decrement it since the player
+                    #entered an invalid input 
+                    round_Number-=1
+            case "L":
+
+                if  player2 in allowed_choices_P2:
+                    
+                    if player2 in lezardWinCombo:
+                        print("player 1 wins ")
+                    elif player2 in lezardLoseCombo:
+                        print("player2 wins")
+                    else:
+                        print("Draw")
+
+                else:
+                    print("player 2 entered an unvalid choice")
+                    #round number will increment so i need to decrement it since the player
+                    #entered an invalid input 
+                    round_Number-=1
+
+            case "Sp":
+
+                if  player2 in allowed_choices_P2:
+                    
+                    if player2 in spockdWinCombo:
+                        print("player 1 wins ")
+                    elif player2 in spockdLoseCombo:
+                        print("player2 wins")
+                    else:
+                        print("Draw")
+
+                else:
+                    print("player 2 entered an unvalid choice")
+                    #round number will increment so i need to decrement it since the player
+                    #entered an invalid input 
+                    round_Number-=1
+
+
         round_Number+=1
         
     else:
