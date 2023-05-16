@@ -1,6 +1,6 @@
 def counter(fname):
 
-    num_charc=1
+    num_charc=0
     num_spaces=0
     num_words=0
 
@@ -11,17 +11,17 @@ def counter(fname):
             if _ == " ":
                 num_spaces+=1
     with open(fname, 'r') as f:
-        lineList=f.readlines()    
+        lineList=f.readlines()   
+        print(lineList) 
         num_lines=len(lineList)
 
         for i in lineList:
-            print(len(i.strip().split(' ')))
-            num_words+=len(i.strip().split(' '))
-            
-    print(num_spaces)
-    print(num_charc)
-    print(num_words)
+            if  i.startswith("\n"):
+                print("pass")
+            else:
+
+            #print(len(i.strip().split(' ')))
+                num_words+=len(i.strip().split(' '))
     return [num_words,num_lines, num_charc, num_spaces]
 
 print(counter("./counter.txt"))
-
