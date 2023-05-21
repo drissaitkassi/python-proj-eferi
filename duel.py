@@ -2,8 +2,8 @@ import csv
 # PAPER combination
 #todo change the file path by removing the ./test/
 
-PLAYER_INFO_FILE = './test1/players_infos.csv'
-ROUND_0_FILE = './test1/round_0.csv'
+PLAYER_INFO_FILE = './test8/players_infos.csv'
+ROUND_0_FILE = './test8/round_0.csv'
 MATCHES_FILE = 'matches.csv'
 
 PAPERWinCombo=["ROCK","SPOCK"]
@@ -49,10 +49,10 @@ allowed_choices_P2=[
 ]
 
 ''' should be converted to str before passing it '''
-roundNumber=1
+roundNumber=0
 
 ''' winner list must be converted to tuples of oppenants using *zip and iter()'''
-winnerList=['John']
+winnerList=[]
 
 
 
@@ -241,8 +241,6 @@ def getMaxRound(filename):
 
 #print(getMaxRound("./test1/players_infos.csv"))
 
-def afterRound():
-    pass
 
 #list_of_players=[('Henry', 'Jack'), ('Paul', 'John')]
 #list_of_players=round_0()
@@ -300,16 +298,15 @@ while(roundNumber != MAX_ROUNDS):
             for nameTuple in winnerTupleList: #from file 
                 listOfDuals.append(playersSign(nameTuple,str(roundNumber)))
             #print(winnerTupleList)
+            winnerList=[]
             for mydual in listOfDuals:
                 dual(str(roundNumber),mydual)
             print(winnerList)
-            winnerList=[]
+           
             print("============= winner list after init")
             print(winnerList)
             listOfDuals=[]
             roundNumber+=1
-            ''' get names from winner list'''
-            ''' we should check if winner list is > 1'''
 
         else :
             print("im in else clause")
