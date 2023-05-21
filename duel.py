@@ -47,9 +47,16 @@ allowed_choices_P2=[
 "SPOCK"
 ]
 
-roundNumber=0
+''' should be converted to str before passing it '''
+roundNumber=1
 
+''' winner list must be converted to tuples of oppenants using *zip and iter()'''
 winnerList=[]
+
+'''============ contains the actual logic of the dual
+this function:
+1) writes to match.csv 
+2) append winners to winner list ========='''
 
 def dual(round,dualInfos):
     pl1Name=dualInfos[0][0]
@@ -180,6 +187,9 @@ def dual(round,dualInfos):
     print(matchDict)
     return matchDict
 
+
+'''=============== return a list of tuples each tuple contains the names for single dual ==============='''
+
 def round_0():
     playersInDuals=[]
     with open("round_0.csv",newline="") as rounds:
@@ -197,6 +207,9 @@ def afterRound():
 list_of_players=[('Henry', 'Jack'), ('Paul', 'John')]
 
 
+'''========== return a list of 2 tuples   containing  [(p1Name,p1Sign),(p2Name,p2Sign)]
+which represent a "dual" =========='''
+
 def playersSign(playerNameTuple,roundNumn):
     playerSing=[]
     for name in playerNameTuple:
@@ -210,31 +223,24 @@ def playersSign(playerNameTuple,roundNumn):
 
     return playerSing
 
-# playersSignList=[]
-# for nameTuple in list_of_players:
-#     playersSignList.append(playersSign(nameTuple,'1'))
-#print(playersSignList)  
-# print(playersSign([('Henry', 'Jack')],'1'))
-
-listOfDuals=[[('Henry', 'SPOCK'), ('Jack', 'PAPER')], [('Paul', 'ROCK'), ('John', 'LIZARD')]]
-
-# adual=[('Henry', 'SPOCK'), ('Jack', 'PAPER')]
-# dual('1',adual)
-
-for mydual in listOfDuals:
-    dual(1,mydual)
+''' =========== create list of duals by appending each dualinfo to the list ========
+we need a dual list to know how many time we should run the dual function as well as to gather 
+all duals in one place ========== '''
 
 
+playersSignList=[]
+for nameTuple in list_of_players:
+    playersSignList.append(playersSign(nameTuple,str(roundNumber)))
+#print(playersSignList) 
+
+
+'''========test dual function with a list of duals ======='''
+
+# listOfDuals=[[('Henry', 'SPOCK'), ('Jack', 'PAPER')], [('Paul', 'ROCK'), ('John', 'LIZARD')]]
+# for mydual in listOfDuals:
+#     dual(str(roundNumber),mydual)
 
 
 
-# print(playersSignList)
-# if roundNumber==0:
-#     dualTuples=round_0()
-#     playersSign()
-# print(round_0())
 
-
-# for i in range(len(round_0())):
-#     dual()
 
