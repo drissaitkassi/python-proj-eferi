@@ -1,8 +1,8 @@
 import csv
 # PAPER combination
 
-PLAYER_INFO_FILE = 'players_infos.csv'
-ROUND_0_FILE = 'round_0.csv'
+PLAYER_INFO_FILE = './test8/players_infos.csv'
+ROUND_0_FILE = './test8/round_0.csv'
 MATCHES_FILE = 'matches.csv'
 
 PAPERWinCombo=["ROCK","SPOCK"]
