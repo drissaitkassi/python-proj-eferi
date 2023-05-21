@@ -16,6 +16,21 @@ import csv
 #         if row['Name']=="Jack" and row['Round']=='0':
 #             print(row['Sign'])
 
+# def getMaxRound(filename):
+#     roundList=[]
+#     with open(filename,newline="") as players:
+#         csv_reader=csv.DictReader(players,delimiter=",")
+#         next(csv_reader)
+#         for row in csv_reader:
+#             roundList.append(row['Round'])
+#             #print(row['Round'])
+#     return max(roundList)
+# print(getMaxRound("./test1/players_infos.csv"))
+
+
+
+#print(max(testList))
+
 # myDict={'Round':'rozezeznds','Winner':'winnezezer','Player 1 name':'pezeze1','Player 1 sign':'p1Sign','Player 2 name':'p2','Player 2 sign':'p2Sign' }
 # head=['round','winner','player 1 name','player 1 sign','player 2 name','player 2 sign']
 
@@ -53,8 +68,8 @@ import csv
 
 # print(zip(('Henry', 'Jack'),('Paul', 'John')))
  
-testTupleList=[]
-winnerLIST=['ab','cd','ef','gh']
+# testTupleList=[]
+# winnerLIST=['ab','cd','ef','gh']
 
 # for i in range(len(testTupleList)):
 #     print(i+1)
@@ -64,5 +79,34 @@ winnerLIST=['ab','cd','ef','gh']
 #     index=index+1
 # print(testTupleList)
 
-it=iter(winnerLIST)
-print([*zip(it, it)])
+# it=iter(winnerLIST)
+# print([*zip(it, it)])
+
+
+'''======== test converting winner list into list of tuples for every 2 elemnts 
+& initializing it to empty list ======================'''
+
+# print("======= winner list full=======")
+# print(winnerList)
+# it=iter(winnerList)
+# print("======= winner list converted to list of tuples=======")
+# winnerTupleList=[*zip(it, it)]
+# print(winnerTupleList)
+# winnerList=[]
+# print("======= winner list initilized =======")
+# print(winnerList)
+
+
+# if roundNumber == 0:
+#     ''' get names from file '''
+#     pass
+# else :
+#     ''' get names from winner list'''
+#     ''' we should check if winner list is > 1'''
+#     if len(winnerList) >1 :
+#         '''convert winner list to name tuples '''
+#         ''' run dual and initialize winner list to []'''
+#         pass 
+#     else :
+#         pass
+#     pass

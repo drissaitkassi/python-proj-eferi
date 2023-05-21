@@ -1,8 +1,9 @@
 import csv
 # PAPER combination
+#todo change the file path by removing the ./test/
 
-PLAYER_INFO_FILE = './test8/players_infos.csv'
-ROUND_0_FILE = './test8/round_0.csv'
+PLAYER_INFO_FILE = './test1/players_infos.csv'
+ROUND_0_FILE = './test1/round_0.csv'
 MATCHES_FILE = 'matches.csv'
 
 PAPERWinCombo=["ROCK","SPOCK"]
@@ -51,7 +52,9 @@ allowed_choices_P2=[
 roundNumber=1
 
 ''' winner list must be converted to tuples of oppenants using *zip and iter()'''
-winnerList=[]
+winnerList=['John']
+
+
 
 '''============ contains the actual logic of the dual
 this function:
@@ -226,6 +229,17 @@ def round_0():
             playersInDuals.append((row['Player 1'],row['Player 2']))
     return playersInDuals
 
+def getMaxRound(filename):
+    roundList=[]
+    with open(filename,newline="") as players:
+        csv_reader=csv.DictReader(players,delimiter=",")
+        next(csv_reader)
+        for row in csv_reader:
+            roundList.append(row['Round'])
+            #print(row['Round'])
+    return max(roundList)
+
+#print(getMaxRound("./test1/players_infos.csv"))
 
 def afterRound():
     pass
@@ -242,7 +256,7 @@ def playersSign(playerNameTuple,roundNumn):
     for name in playerNameTuple:
         with open(PLAYER_INFO_FILE,newline="") as players:
             csv_reader=csv.DictReader(players,delimiter=",")
-            next(csv_reader)
+            #next(csv_reader)
             for row in csv_reader:
                 if row['Name']==name and row['Round']==roundNumn:
                     playerSing.append((row['Name'],row['Sign']))
@@ -254,29 +268,53 @@ we need a dual list to know how many time we should run the dual function as wel
 all duals in one place ========== '''
 
 
-listOfDuals=[]
-for nameTuple in round_0():
-    listOfDuals.append(playersSign(nameTuple,str(roundNumber)))
-#print(playersSignList) 
 
 
 '''========test dual function with a list of duals ======='''
 
 #todo remove this test comment 
 #listOfDuals=[[('Henry', 'SPOCK'), ('Jack', 'PAPER')], [('Paul', 'ROCK'), ('John', 'LIZARD')]]
+MAX_ROUNDS=getMaxRound("./test1/players_infos.csv")
+while(roundNumber != MAX_ROUNDS):
+        
 
-for mydual in listOfDuals:
-    dual(str(roundNumber),mydual)
+    if roundNumber == 0:
+        ''' get names from file '''
+        listOfDuals=[]
+        for nameTuple in round_0(): #from file 
+            listOfDuals.append(playersSign(nameTuple,str(roundNumber)))
+        for mydual in listOfDuals:
+            dual(str(roundNumber),mydual)
+        roundNumber+=1
+    else :
 
-'''======== test converting winner list into list of tuples for every 2 elemnts 
-& initializing it to empty list ======================'''
+        if len(winnerList) > 1:
+            print(f"============= winner list befor init {winnerList}")
+       
+            print(f"lenght of winner list {len(winnerList)}")
 
-print("======= winner list full=======")
-print(winnerList)
-it=iter(winnerList)
-print("======= winner list converted to list of tuples=======")
-winnerTupleList=[*zip(it, it)]
-print(winnerTupleList)
-winnerList=[]
-print("======= winner list initilized =======")
-print(winnerList)
+            listOfDuals=[]
+            it=iter(winnerList)
+            #print("======= winner list converted to list of tuples=======")
+            winnerTupleList=[*zip(it, it)]
+            for nameTuple in winnerTupleList: #from file 
+                listOfDuals.append(playersSign(nameTuple,str(roundNumber)))
+            #print(winnerTupleList)
+            for mydual in listOfDuals:
+                dual(str(roundNumber),mydual)
+            print(winnerList)
+            winnerList=[]
+            print("============= winner list after init")
+            print(winnerList)
+            listOfDuals=[]
+            roundNumber+=1
+            ''' get names from winner list'''
+            ''' we should check if winner list is > 1'''
+
+        else :
+            print("im in else clause")
+            print(len(winnerList))
+            print(f'TOURNEMANT WINNER : {winnerList[0]}')
+            break
+
+        
