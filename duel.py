@@ -74,17 +74,19 @@ def dual(round,dualInfos):
                     
                     if pl2Sign in PAPERWinCombo:
                         winner=pl1Name
+                        winnerList.append(winner)
                         print(f" {pl1Name} wins ")
                     elif pl2Sign in PAPERLoseCombo:
                         winner=pl2Name
+                        winnerList.append(winner)
                         print(f" {pl2Name} wins ")
-                        #pl1Sign=input("enter player 1 :")
                     else:
                         print("Draw")
-                        #pl1Sign=input("enter player 1 :")
                         #sort player alphabatecaly  and choose first on the list 
                         sortedListOfPlayer=sorted([pl1Name,pl2Name])
                         winner=sortedListOfPlayer[0]
+                        winnerList.append(winner)
+
                         print(f" {sortedListOfPlayer[0]} wins ")
 
                 else:
@@ -99,20 +101,26 @@ def dual(round,dualInfos):
                     
                     if pl2Sign in SCISSORSWinCombo:
                         winner=pl1Name
+                        winnerList.append(winner)
+                        
                         print(f" player 1 wins ")
                     elif pl2Sign in SCISSORSLoseCombo:
                         winner=pl2Name
+                        winnerList.append(winner)
+
                         print(f" player 2 wins ")
                     else:
                         print("Draw")
                         sortedListOfPlayer=sorted([pl1Name,pl2Name])
                         winner=sortedListOfPlayer[0]
+                        winnerList.append(winner)
+
                         print(f" {sortedListOfPlayer[0]} wins ")
 
                 else:
                     print("player 2 entered an unvalid choice")
-                    #round number will increment so i need to decrement it since the player
-                    #entered an invalid input 
+
+                    #todo round number will increment so i need to decrement it since the player entered an invalid input 
 
 
             case "ROCK":
@@ -122,12 +130,18 @@ def dual(round,dualInfos):
                     if pl2Sign in ROCKWinCombo:
                         winner=pl1Name
                         print(f" {pl1Name} wins ")
+                        winnerList.append(winner)
+
                     elif pl2Sign in ROCKLoseCombo:
                         winner=pl2Name
+                        winnerList.append(winner)
+
                         print(f" {pl2Name} wins ")
                     else:
                         sortedListOfPlayer=sorted([pl1Name,pl2Name])
                         winner=sortedListOfPlayer[0]
+                        winnerList.append(winner)
+
                         print(f" {sortedListOfPlayer[0]} wins ")
 
                 else:
@@ -140,14 +154,20 @@ def dual(round,dualInfos):
                     
                     if pl2Sign in LIZARDWinCombo:
                         winner=pl1Name
+                        winnerList.append(winner)
+
                         print(f" {pl1Name} wins ")
                     elif pl2Sign in LIZARDLoseCombo:
                         winner=pl2Name
+                        winnerList.append(winner)
+
                         print(f" {pl2Name} wins ")
                     else:
                         print('draw')
                         sortedListOfPlayer=sorted([pl1Name,pl2Name])
                         winner=sortedListOfPlayer[0]
+                        winnerList.append(winner)
+
                         print(f" {sortedListOfPlayer[0]} wins ")
 
                 else:
@@ -161,14 +181,20 @@ def dual(round,dualInfos):
                     
                     if pl2Sign in SPOCKdWinCombo:
                         winner=pl1Name
+                        winnerList.append(winner)
+
                         print(f" {pl1Name} wins ")
                     elif pl2Sign in SPOCKdLoseCombo:
                         winner=pl2Name
+                        winnerList.append(winner)
+
                         print(f" {pl2Name} wins ")
                     else:
                         print("Draw")
                         sortedListOfPlayer=sorted([pl1Name,pl2Name])
                         winner=sortedListOfPlayer[0]
+                        winnerList.append(winner)
+
                         print(f" {sortedListOfPlayer[0]} wins ")
 
                 else:
@@ -184,27 +210,28 @@ def dual(round,dualInfos):
                  }
     
     #record matchs in matches.csv
+    #todo remove this print statment 
     print(matchDict)
     return matchDict
 
 
-'''=============== return a list of tuples each tuple contains the names for single dual ==============='''
+'''=============== return a list of tuples each tuple contains the "names"
+for a single dual on round zero ==============='''
 
 def round_0():
     playersInDuals=[]
-    with open("round_0.csv",newline="") as rounds:
+    with open(ROUND_0_FILE,newline="") as rounds:
         csv_reader=csv.DictReader(rounds,delimiter=",")
         for row in csv_reader:
-            #print(row)
             playersInDuals.append((row['Player 1'],row['Player 2']))
-            #dual('0',row['Player 1'],'SCISSORS',row['Player 2'],'SPOCK')
     return playersInDuals
 
 
 def afterRound():
     pass
 
-list_of_players=[('Henry', 'Jack'), ('Paul', 'John')]
+#list_of_players=[('Henry', 'Jack'), ('Paul', 'John')]
+#list_of_players=round_0()
 
 
 '''========== return a list of 2 tuples   containing  [(p1Name,p1Sign),(p2Name,p2Sign)]
@@ -213,12 +240,11 @@ which represent a "dual" =========='''
 def playersSign(playerNameTuple,roundNumn):
     playerSing=[]
     for name in playerNameTuple:
-        with open("players_infos.csv",newline="") as players:
+        with open(PLAYER_INFO_FILE,newline="") as players:
             csv_reader=csv.DictReader(players,delimiter=",")
             next(csv_reader)
             for row in csv_reader:
                 if row['Name']==name and row['Round']==roundNumn:
-                    #print(row['Sign'])
                     playerSing.append((row['Name'],row['Sign']))
 
     return playerSing
@@ -228,19 +254,29 @@ we need a dual list to know how many time we should run the dual function as wel
 all duals in one place ========== '''
 
 
-playersSignList=[]
-for nameTuple in list_of_players:
-    playersSignList.append(playersSign(nameTuple,str(roundNumber)))
+listOfDuals=[]
+for nameTuple in round_0():
+    listOfDuals.append(playersSign(nameTuple,str(roundNumber)))
 #print(playersSignList) 
 
 
 '''========test dual function with a list of duals ======='''
 
-# listOfDuals=[[('Henry', 'SPOCK'), ('Jack', 'PAPER')], [('Paul', 'ROCK'), ('John', 'LIZARD')]]
-# for mydual in listOfDuals:
-#     dual(str(roundNumber),mydual)
+#todo remove this test comment 
+#listOfDuals=[[('Henry', 'SPOCK'), ('Jack', 'PAPER')], [('Paul', 'ROCK'), ('John', 'LIZARD')]]
 
+for mydual in listOfDuals:
+    dual(str(roundNumber),mydual)
 
+'''======== test converting winner list into list of tuples for every 2 elemnts 
+& initializing it to empty list ======================'''
 
-
-
+print("======= winner list full=======")
+print(winnerList)
+it=iter(winnerList)
+print("======= winner list converted to list of tuples=======")
+winnerTupleList=[*zip(it, it)]
+print(winnerTupleList)
+winnerList=[]
+print("======= winner list initilized =======")
+print(winnerList)
