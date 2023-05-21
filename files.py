@@ -31,8 +31,13 @@ import csv
 
 #print(max(testList))
 
-# myDict={'Round':'rozezeznds','Winner':'winnezezer','Player 1 name':'pezeze1','Player 1 sign':'p1Sign','Player 2 name':'p2','Player 2 sign':'p2Sign' }
-# head=['round','winner','player 1 name','player 1 sign','player 2 name','player 2 sign']
+myDict={'Round':'rozezeznds',
+        'Winner':'winnezezer',
+        'Player 1 name':'pezeze1',
+        'Player 1 sign':'my ass' ,
+        'Player 2 name':'punk',
+        'Player 2 sign':'your punck ass'}
+head=['Round','Winner','Player 1 name','Player 1 sign','Player 2 name','Player 2 sign']
 
 # class HandleFiles:
     
@@ -40,12 +45,12 @@ import csv
 #         pass
        
 #     def createMatchFile(header):
-#         with open(header,"a",newline='') as matches:
+#         with open(header,"a",newline='') as matche:
 #             writer=csv.DictWriter(matches,fieldnames=head)
 #             writer.writeheader()
 
 #     def recordmatched(matchDict):
-#         with open(matchDict,"a",newline='') as matches:
+#         with open(matchDict,"a",newline='') as matche:
 #             writer=csv.DictWriter(matches,fieldnames=head)
 #             writer.writerow(myDict)
             
@@ -110,3 +115,15 @@ import csv
 #     else :
 #         pass
 #     pass
+def createMatchFile(fileName,headers):
+    with open(fileName,"a",newline='') as matche:
+        writer=csv.DictWriter(matche,fieldnames=headers)
+        writer.writeheader()
+
+#createMatchFile('match.csv')
+
+def recordmatched(fileName,matchDict,headers):
+    with open(fileName,"a",newline='') as matche:
+        writer=csv.DictWriter(matche,fieldnames=headers)
+        writer.writerow(matchDict)
+recordmatched('match.csv',myDict,head)
