@@ -1,9 +1,8 @@
 import csv
 # PAPER combination
-#todo change the file path by removing the ./test/
 
-PLAYER_INFO_FILE = './test8/players_infos.csv'
-ROUND_0_FILE = './test8/round_0.csv'
+PLAYER_INFO_FILE = 'players_infos.csv'
+ROUND_0_FILE = 'round_0.csv'
 MATCHES_FILE = 'matches.csv'
 
 PAPERWinCombo=["ROCK","SPOCK"]
@@ -197,7 +196,6 @@ def dual(round,dualInfos):
                'Player 2 sign':pl2Sign
                  }
     
-    #todo record matchs in matches.csv
     recordmatched(MATCHES_FILE,matchDict,head)
     return matchDict
 
