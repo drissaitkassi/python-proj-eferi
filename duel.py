@@ -1,4 +1,10 @@
+import csv
 # PAPER combination
+
+PLAYER_INFO_FILE = 'players_infos.csv'
+ROUND_0_FILE = 'round_0.csv'
+MATCHES_FILE = 'matches.csv'
+
 PAPERWinCombo=["ROCK","SPOCK"]
 PAPERDraw="PAPER"
 PAPERLoseCombo=["SCISSORS","LIZARD"]
@@ -41,9 +47,15 @@ allowed_choices_P2=[
 "SPOCK"
 ]
 
+roundNumber=0
 
+winnerList=[]
 
-def dual(round,pl1Name,pl1Sign,pl2Name,pl2Sign):
+def dual(round,dualInfos):
+    pl1Name=dualInfos[0][0]
+    pl1Sign=dualInfos[0][1]
+    pl2Name=dualInfos[1][0]
+    pl2Sign=dualInfos[1][1]
     winner=''
     if pl1Sign in allowed_choices:
 
@@ -101,9 +113,11 @@ def dual(round,pl1Name,pl1Sign,pl2Name,pl2Sign):
                 if  pl2Sign in allowed_choices_P2:
                     
                     if pl2Sign in ROCKWinCombo:
-                        print("player 1 wins ")
+                        winner=pl1Name
+                        print(f" {pl1Name} wins ")
                     elif pl2Sign in ROCKLoseCombo:
-                        print("pl2Sign wins")
+                        winner=pl2Name
+                        print(f" {pl2Name} wins ")
                     else:
                         sortedListOfPlayer=sorted([pl1Name,pl2Name])
                         winner=sortedListOfPlayer[0]
@@ -118,9 +132,11 @@ def dual(round,pl1Name,pl1Sign,pl2Name,pl2Sign):
                 if  pl2Sign in allowed_choices_P2:
                     
                     if pl2Sign in LIZARDWinCombo:
-                        print("player 1 wins ")
+                        winner=pl1Name
+                        print(f" {pl1Name} wins ")
                     elif pl2Sign in LIZARDLoseCombo:
-                        print("pl2Sign wins")
+                        winner=pl2Name
+                        print(f" {pl2Name} wins ")
                     else:
                         print('draw')
                         sortedListOfPlayer=sorted([pl1Name,pl2Name])
@@ -137,9 +153,11 @@ def dual(round,pl1Name,pl1Sign,pl2Name,pl2Sign):
                 if  pl2Sign in allowed_choices_P2:
                     
                     if pl2Sign in SPOCKdWinCombo:
-                        print("player 1 wins ")
+                        winner=pl1Name
+                        print(f" {pl1Name} wins ")
                     elif pl2Sign in SPOCKdLoseCombo:
-                        print("pl2Sign wins")
+                        winner=pl2Name
+                        print(f" {pl2Name} wins ")
                     else:
                         print("Draw")
                         sortedListOfPlayer=sorted([pl1Name,pl2Name])
@@ -150,8 +168,7 @@ def dual(round,pl1Name,pl1Sign,pl2Name,pl2Sign):
                     print("player 2 entered an unvalid choice")
                     #round number will increment so i need to decrement it since the player
                     #entered an invalid input 
-
-   
+ 
     matchDict={'Round':round,'Winner':winner,
                'Player 1 name':pl1Name,
                'Player 1 sign':pl1Sign,
@@ -159,8 +176,65 @@ def dual(round,pl1Name,pl1Sign,pl2Name,pl2Sign):
                'Player 2 sign':pl2Sign
                  }
     
+    #record matchs in matches.csv
     print(matchDict)
     return matchDict
 
+def round_0():
+    playersInDuals=[]
+    with open("round_0.csv",newline="") as rounds:
+        csv_reader=csv.DictReader(rounds,delimiter=",")
+        for row in csv_reader:
+            #print(row)
+            playersInDuals.append((row['Player 1'],row['Player 2']))
+            #dual('0',row['Player 1'],'SCISSORS',row['Player 2'],'SPOCK')
+    return playersInDuals
 
-dual('1','John','PAPER','Paul','PAPER')
+
+def afterRound():
+    pass
+
+list_of_players=[('Henry', 'Jack'), ('Paul', 'John')]
+
+
+def playersSign(playerNameTuple,roundNumn):
+    playerSing=[]
+    for name in playerNameTuple:
+        with open("players_infos.csv",newline="") as players:
+            csv_reader=csv.DictReader(players,delimiter=",")
+            next(csv_reader)
+            for row in csv_reader:
+                if row['Name']==name and row['Round']==roundNumn:
+                    #print(row['Sign'])
+                    playerSing.append((row['Name'],row['Sign']))
+
+    return playerSing
+
+# playersSignList=[]
+# for nameTuple in list_of_players:
+#     playersSignList.append(playersSign(nameTuple,'1'))
+#print(playersSignList)  
+# print(playersSign([('Henry', 'Jack')],'1'))
+
+listOfDuals=[[('Henry', 'SPOCK'), ('Jack', 'PAPER')], [('Paul', 'ROCK'), ('John', 'LIZARD')]]
+
+# adual=[('Henry', 'SPOCK'), ('Jack', 'PAPER')]
+# dual('1',adual)
+
+for mydual in listOfDuals:
+    dual(1,mydual)
+
+
+
+
+
+# print(playersSignList)
+# if roundNumber==0:
+#     dualTuples=round_0()
+#     playersSign()
+# print(round_0())
+
+
+# for i in range(len(round_0())):
+#     dual()
+

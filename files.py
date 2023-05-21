@@ -1,10 +1,10 @@
 import csv
 
 # with open("round_0.csv",newline="") as rounds:
-#     csv_reader=csv.reader(rounds,delimiter=",")
-#     next(csv_reader)
+#     csv_reader=csv.DictReader(rounds,delimiter=",")
 #     for row in csv_reader:
-#         print(f'{row[0]} vs {row[1]}')
+#         #print(row)
+#         print(f"{row['Player 1']} vs {row['Player 2']}")
 
 
 # with open("players_infos.csv",newline="") as players:
@@ -13,7 +13,7 @@ import csv
 #     for row in csv_reader:
 #         #print(row)
 #         # print(f' player name : {row[0]} round: {row[1]} sign played {row[2]} ')
-#         if row['Name']=="Jack" and row['Round']=='2':
+#         if row['Name']=="Jack" and row['Round']=='0':
 #             print(row['Sign'])
 
 # myDict={'Round':'rozezeznds','Winner':'winnezezer','Player 1 name':'pezeze1','Player 1 sign':'p1Sign','Player 2 name':'p2','Player 2 sign':'p2Sign' }
@@ -51,5 +51,18 @@ import csv
 # createMatchFile(header=head)
 # recordmatched(myDict)
 
+# print(zip(('Henry', 'Jack'),('Paul', 'John')))
+ 
+testTupleList=[]
+winnerLIST=['ab','cd','ef','gh']
 
-print(sorted(['paul','john','aze']))
+# for i in range(len(testTupleList)):
+#     print(i+1)
+# index=0
+# for index in range(len(winnerLIST)-1):
+#     testTupleList.append((winnerLIST[index],winnerLIST[index+1]))
+#     index=index+1
+# print(testTupleList)
+
+it=iter(winnerLIST)
+print([*zip(it, it)])
